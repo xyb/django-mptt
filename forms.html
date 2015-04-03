@@ -1,19 +1,20 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Working with trees in Django forms &mdash; django-mptt v0.6.1 documentation</title>
-    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <title>Working with trees in Django forms &mdash; django-mptt 0.7.0 documentation</title>
+    
+    <link rel="stylesheet" href="static/classic.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
-        VERSION:     '0.6.1',
+        URL_ROOT:    './',
+        VERSION:     '0.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,12 +23,12 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="django-mptt v0.6.1 documentation" href="index.html" />
+    <link rel="top" title="django-mptt 0.7.0 documentation" href="index.html" />
     <link rel="next" title="Working with trees in templates" href="templates.html" />
     <link rel="prev" title="Admin classes" href="admin.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -42,14 +43,14 @@
         <li class="right" >
           <a href="admin.html" title="Admin classes"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">django-mptt v0.6.1 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.7.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="working-with-trees-in-django-forms">
 <h1><a class="toc-backref" href="#id2">Working with trees in Django forms</a><a class="headerlink" href="#working-with-trees-in-django-forms" title="Permalink to this headline">¶</a></h1>
@@ -58,13 +59,13 @@
 <ul class="simple">
 <li><a class="reference internal" href="#working-with-trees-in-django-forms" id="id2">Working with trees in Django forms</a><ul>
 <li><a class="reference internal" href="#fields" id="id3">Fields</a><ul>
-<li><a class="reference internal" href="#treenodechoicefield" id="id4"><tt class="docutils literal"><span class="pre">TreeNodeChoiceField</span></tt></a></li>
-<li><a class="reference internal" href="#treenodemultiplechoicefield" id="id5"><tt class="docutils literal"><span class="pre">TreeNodeMultipleChoiceField</span></tt></a></li>
-<li><a class="reference internal" href="#treenodepositionfield" id="id6"><tt class="docutils literal"><span class="pre">TreeNodePositionField</span></tt></a></li>
+<li><a class="reference internal" href="#treenodechoicefield" id="id4"><code class="docutils literal"><span class="pre">TreeNodeChoiceField</span></code></a></li>
+<li><a class="reference internal" href="#treenodemultiplechoicefield" id="id5"><code class="docutils literal"><span class="pre">TreeNodeMultipleChoiceField</span></code></a></li>
+<li><a class="reference internal" href="#treenodepositionfield" id="id6"><code class="docutils literal"><span class="pre">TreeNodePositionField</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#forms" id="id7">Forms</a><ul>
-<li><a class="reference internal" href="#movenodeform" id="id8"><tt class="docutils literal"><span class="pre">MoveNodeForm</span></tt></a></li>
+<li><a class="reference internal" href="#movenodeform" id="id8"><code class="docutils literal"><span class="pre">MoveNodeForm</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -73,69 +74,72 @@
 </div>
 <div class="section" id="fields">
 <h2><a class="toc-backref" href="#id3">Fields</a><a class="headerlink" href="#fields" title="Permalink to this headline">¶</a></h2>
-<p>The following custom form fields are provided in the <tt class="docutils literal"><span class="pre">mptt.forms</span></tt>
+<p>The following custom form fields are provided in the <code class="docutils literal"><span class="pre">mptt.forms</span></code>
 package.</p>
 <div class="section" id="treenodechoicefield">
-<h3><a class="toc-backref" href="#id4"><tt class="docutils literal"><span class="pre">TreeNodeChoiceField</span></tt></a><a class="headerlink" href="#treenodechoicefield" title="Permalink to this headline">¶</a></h3>
-<p>This is the default formfield used by <tt class="docutils literal"><span class="pre">TreeForeignKey</span></tt></p>
+<h3><a class="toc-backref" href="#id4"><code class="docutils literal"><span class="pre">TreeNodeChoiceField</span></code></a><a class="headerlink" href="#treenodechoicefield" title="Permalink to this headline">¶</a></h3>
+<p>This is the default formfield used by <code class="docutils literal"><span class="pre">TreeForeignKey</span></code></p>
 <p>A subclass of <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/forms/fields/#django.forms.ModelChoiceField">ModelChoiceField</a> which represents the tree level of
 each node when generating option labels.</p>
-<p>For example, where a form which used a <tt class="docutils literal"><span class="pre">ModelChoiceField</span></tt>:</p>
+<p>For example, where a form which used a <code class="docutils literal"><span class="pre">ModelChoiceField</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">category</span> <span class="o">=</span> <span class="n">ModelChoiceField</span><span class="p">(</span><span class="n">queryset</span><span class="o">=</span><span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>...would result in a select with the following options:</p>
-<div class="highlight-python"><pre>---------
+<div class="highlight-python"><div class="highlight"><pre>---------
 Root 1
 Child 1.1
 Child 1.1.1
 Root 2
 Child 2.1
-Child 2.1.1</pre>
+Child 2.1.1
+</pre></div>
 </div>
-<p>Using a <tt class="docutils literal"><span class="pre">TreeNodeChoiceField</span></tt> instead:</p>
+<p>Using a <code class="docutils literal"><span class="pre">TreeNodeChoiceField</span></code> instead:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">category</span> <span class="o">=</span> <span class="n">TreeNodeChoiceField</span><span class="p">(</span><span class="n">queryset</span><span class="o">=</span><span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>...would result in a select with the following options:</p>
-<div class="highlight-python"><pre>Root 1
+<div class="highlight-python"><div class="highlight"><pre>Root 1
 --- Child 1.1
 ------ Child 1.1.1
 Root 2
 --- Child 2.1
------- Child 2.1.1</pre>
+------ Child 2.1.1
+</pre></div>
 </div>
 <p>The text used to indicate a tree level can by customised by providing a
-<tt class="docutils literal"><span class="pre">level_indicator</span></tt> argument:</p>
+<code class="docutils literal"><span class="pre">level_indicator</span></code> argument:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">category</span> <span class="o">=</span> <span class="n">TreeNodeChoiceField</span><span class="p">(</span><span class="n">queryset</span><span class="o">=</span><span class="n">Category</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">(),</span>
                                <span class="n">level_indicator</span><span class="o">=</span><span class="s">u&#39;+--&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>...which for this example would result in a select with the following
 options:</p>
-<div class="highlight-python"><pre>Root 1
+<div class="highlight-python"><div class="highlight"><pre>Root 1
 +-- Child 1.1
 +--+-- Child 1.1.1
 Root 2
 +-- Child 2.1
-+--+-- Child 2.1.1</pre>
++--+-- Child 2.1.1
+</pre></div>
 </div>
 </div>
 <div class="section" id="treenodemultiplechoicefield">
-<h3><a class="toc-backref" href="#id5"><tt class="docutils literal"><span class="pre">TreeNodeMultipleChoiceField</span></tt></a><a class="headerlink" href="#treenodemultiplechoicefield" title="Permalink to this headline">¶</a></h3>
-<p>Just like <tt class="docutils literal"><span class="pre">TreeNodeChoiceField</span></tt>, but accepts more than one value.</p>
+<h3><a class="toc-backref" href="#id5"><code class="docutils literal"><span class="pre">TreeNodeMultipleChoiceField</span></code></a><a class="headerlink" href="#treenodemultiplechoicefield" title="Permalink to this headline">¶</a></h3>
+<p>Just like <code class="docutils literal"><span class="pre">TreeNodeChoiceField</span></code>, but accepts more than one value.</p>
 </div>
 <div class="section" id="treenodepositionfield">
-<h3><a class="toc-backref" href="#id6"><tt class="docutils literal"><span class="pre">TreeNodePositionField</span></tt></a><a class="headerlink" href="#treenodepositionfield" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6"><code class="docutils literal"><span class="pre">TreeNodePositionField</span></code></a><a class="headerlink" href="#treenodepositionfield" title="Permalink to this headline">¶</a></h3>
 <p>A subclass of <a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/forms/fields/#choicefield">ChoiceField</a> whose choices default to the valid arguments
 for the <a class="reference external" href="models.html#move-to-target-position-first-child">move_to method</a>.</p>
 </div>
 </div>
 <div class="section" id="forms">
 <h2><a class="toc-backref" href="#id7">Forms</a><a class="headerlink" href="#forms" title="Permalink to this headline">¶</a></h2>
-<p>The following custom form is provided in the <tt class="docutils literal"><span class="pre">mptt.forms</span></tt> package.</p>
+<p>The following custom form is provided in the <code class="docutils literal"><span class="pre">mptt.forms</span></code> package.</p>
 <div class="section" id="movenodeform">
-<h3><a class="toc-backref" href="#id8"><tt class="docutils literal"><span class="pre">MoveNodeForm</span></tt></a><a class="headerlink" href="#movenodeform" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8"><code class="docutils literal"><span class="pre">MoveNodeForm</span></code></a><a class="headerlink" href="#movenodeform" title="Permalink to this headline">¶</a></h3>
 <p>A form which allows the user to move a given node from one location in
 its tree to another, with optional restriction of the nodes which are
 valid target nodes for the <cite>move_to method</cite></p>
@@ -143,13 +147,13 @@ valid target nodes for the <cite>move_to method</cite></p>
 <h4>Fields<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p>The form contains the following fields:</p>
 <ul>
-<li><p class="first"><tt class="docutils literal"><span class="pre">target</span></tt> &#8211; a <tt class="docutils literal"><span class="pre">TreeNodeChoiceField</span></tt> for selecting the target node
+<li><p class="first"><code class="docutils literal"><span class="pre">target</span></code> &#8211; a <code class="docutils literal"><span class="pre">TreeNodeChoiceField</span></code> for selecting the target node
 for the node movement.</p>
-<p>Target nodes will be displayed as a single <tt class="docutils literal"><span class="pre">&lt;select&gt;</span></tt> with its
-<tt class="docutils literal"><span class="pre">size</span></tt> attribute set, so the user can scroll through the target
+<p>Target nodes will be displayed as a single <code class="docutils literal"><span class="pre">&lt;select&gt;</span></code> with its
+<code class="docutils literal"><span class="pre">size</span></code> attribute set, so the user can scroll through the target
 nodes without having to open the dropdown list first.</p>
 </li>
-<li><p class="first"><tt class="docutils literal"><span class="pre">position</span></tt> &#8211; a <tt class="docutils literal"><span class="pre">TreeNodePositionField</span></tt> for selecting the position
+<li><p class="first"><code class="docutils literal"><span class="pre">position</span></code> &#8211; a <code class="docutils literal"><span class="pre">TreeNodePositionField</span></code> for selecting the position
 of the node movement, related to the target node.</p>
 </li>
 </ul>
@@ -158,41 +162,41 @@ of the node movement, related to the target node.</p>
 <h4>Construction<a class="headerlink" href="#construction" title="Permalink to this headline">¶</a></h4>
 <p>Required arguments:</p>
 <dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">node</span></tt></dt>
+<dt><code class="docutils literal"><span class="pre">node</span></code></dt>
 <dd>When constructing the form, the model instance representing the
 node to be moved must be passed as the first argument.</dd>
 </dl>
 <p>Optional arguments:</p>
 <dl class="docutils">
-<dt><tt class="docutils literal"><span class="pre">valid_targets</span></tt></dt>
+<dt><code class="docutils literal"><span class="pre">valid_targets</span></code></dt>
 <dd><p class="first">If provided, this keyword argument will define the list of nodes
 which are valid for selection in form. Otherwise, any instance of the
 same model class as the node being moved will be available for
 selection, apart from the node itself and any of its descendants.</p>
 <p class="last">For example, if you want to restrict the node to moving within its
-own tree, pass a <tt class="docutils literal"><span class="pre">QuerySet</span></tt> containing everything in the node&#8217;s
+own tree, pass a <code class="docutils literal"><span class="pre">QuerySet</span></code> containing everything in the node&#8217;s
 tree except itself and its descendants (to prevent invalid moves) and
 the root node (as a user could choose to make the node a sibling of
 the root node).</p>
 </dd>
-<dt><tt class="docutils literal"><span class="pre">target_select_size</span></tt></dt>
+<dt><code class="docutils literal"><span class="pre">target_select_size</span></code></dt>
 <dd>If provided, this keyword argument will be used to set the size of
-the select used for the target node. Defaults to <tt class="docutils literal"><span class="pre">10</span></tt>.</dd>
-<dt><tt class="docutils literal"><span class="pre">position_choices</span></tt></dt>
+the select used for the target node. Defaults to <code class="docutils literal"><span class="pre">10</span></code>.</dd>
+<dt><code class="docutils literal"><span class="pre">position_choices</span></code></dt>
 <dd>A tuple of allowed position choices and their descriptions.</dd>
-<dt><tt class="docutils literal"><span class="pre">level_indicator</span></tt></dt>
+<dt><code class="docutils literal"><span class="pre">level_indicator</span></code></dt>
 <dd>A string which will be used to represent a single tree level in the
 target options.</dd>
 </dl>
 </div>
 <div class="section" id="save-method">
-<h4><tt class="docutils literal"><span class="pre">save()</span></tt> method<a class="headerlink" href="#save-method" title="Permalink to this headline">¶</a></h4>
-<p>When the form&#8217;s <tt class="docutils literal"><span class="pre">save()</span></tt> method is called, it will attempt to perform
+<h4><code class="docutils literal"><span class="pre">save()</span></code> method<a class="headerlink" href="#save-method" title="Permalink to this headline">¶</a></h4>
+<p>When the form&#8217;s <code class="docutils literal"><span class="pre">save()</span></code> method is called, it will attempt to perform
 the node movement as specified in the form.</p>
 <p>If an invalid move is attempted, an error message will be added to the
 form&#8217;s non-field errors (accessible using
-<tt class="docutils literal"><span class="pre">{{</span> <span class="pre">form.non_field_errors</span> <span class="pre">}}</span></tt> in templates) and the associated
-<tt class="docutils literal"><span class="pre">mptt.exceptions.InvalidMove</span></tt> will be re-raised.</p>
+<code class="docutils literal"><span class="pre">{{</span> <span class="pre">form.non_field_errors</span> <span class="pre">}}</span></code> in templates) and the associated
+<code class="docutils literal"><span class="pre">mptt.exceptions.InvalidMove</span></code> will be re-raised.</p>
 <p>It&#8217;s recommended that you attempt to catch this error and, if caught,
 allow your view to to fall through to rendering the form again again, so
 the error message is displayed to the user.</p>
@@ -236,22 +240,22 @@ the error message is displayed to the user.</p>
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Working with trees in Django forms</a><ul>
 <li><a class="reference internal" href="#fields">Fields</a><ul>
-<li><a class="reference internal" href="#treenodechoicefield"><tt class="docutils literal"><span class="pre">TreeNodeChoiceField</span></tt></a></li>
-<li><a class="reference internal" href="#treenodemultiplechoicefield"><tt class="docutils literal"><span class="pre">TreeNodeMultipleChoiceField</span></tt></a></li>
-<li><a class="reference internal" href="#treenodepositionfield"><tt class="docutils literal"><span class="pre">TreeNodePositionField</span></tt></a></li>
+<li><a class="reference internal" href="#treenodechoicefield"><code class="docutils literal"><span class="pre">TreeNodeChoiceField</span></code></a></li>
+<li><a class="reference internal" href="#treenodemultiplechoicefield"><code class="docutils literal"><span class="pre">TreeNodeMultipleChoiceField</span></code></a></li>
+<li><a class="reference internal" href="#treenodepositionfield"><code class="docutils literal"><span class="pre">TreeNodePositionField</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#forms">Forms</a><ul>
-<li><a class="reference internal" href="#movenodeform"><tt class="docutils literal"><span class="pre">MoveNodeForm</span></tt></a><ul>
+<li><a class="reference internal" href="#movenodeform"><code class="docutils literal"><span class="pre">MoveNodeForm</span></code></a><ul>
 <li><a class="reference internal" href="#id1">Fields</a></li>
 <li><a class="reference internal" href="#construction">Construction</a></li>
-<li><a class="reference internal" href="#save-method"><tt class="docutils literal"><span class="pre">save()</span></tt> method</a></li>
+<li><a class="reference internal" href="#save-method"><code class="docutils literal"><span class="pre">save()</span></code> method</a></li>
 <li><a class="reference internal" href="#example-usage">Example usage</a></li>
 </ul>
 </li>
@@ -267,15 +271,17 @@ the error message is displayed to the user.</p>
   <h4>Next topic</h4>
   <p class="topless"><a href="templates.html"
                         title="next chapter">Working with trees in templates</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="sources/forms.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="sources/forms.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -289,7 +295,7 @@ the error message is displayed to the user.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -304,12 +310,12 @@ the error message is displayed to the user.</p>
         <li class="right" >
           <a href="admin.html" title="Admin classes"
              >previous</a> |</li>
-        <li><a href="index.html">django-mptt v0.6.1 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.7.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2007 - 2013, Craig de Stigter, Jonathan Buchanan and others.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

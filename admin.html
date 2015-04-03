@@ -1,19 +1,20 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Admin classes &mdash; django-mptt v0.6.1 documentation</title>
-    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <title>Admin classes &mdash; django-mptt 0.7.0 documentation</title>
+    
+    <link rel="stylesheet" href="static/classic.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
-        VERSION:     '0.6.1',
+        URL_ROOT:    './',
+        VERSION:     '0.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,12 +23,12 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="django-mptt v0.6.1 documentation" href="index.html" />
+    <link rel="top" title="django-mptt 0.7.0 documentation" href="index.html" />
     <link rel="next" title="Working with trees in Django forms" href="forms.html" />
     <link rel="prev" title="Models and Managers" href="models.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -42,19 +43,19 @@
         <li class="right" >
           <a href="models.html" title="Models and Managers"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">django-mptt v0.6.1 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.7.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="admin-classes">
 <h1>Admin classes<a class="headerlink" href="#admin-classes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="mptt-admin-mpttmodeladmin">
-<h2><tt class="docutils literal"><span class="pre">mptt.admin.MPTTModelAdmin</span></tt><a class="headerlink" href="#mptt-admin-mpttmodeladmin" title="Permalink to this headline">¶</a></h2>
+<h2><code class="docutils literal"><span class="pre">mptt.admin.MPTTModelAdmin</span></code><a class="headerlink" href="#mptt-admin-mpttmodeladmin" title="Permalink to this headline">¶</a></h2>
 <p>This is a bare-bones tree admin. All it does is enforce ordering, and indent the nodes
 in the tree to make a pretty tree list view.</p>
 <p>Usage:</p>
@@ -71,9 +72,9 @@ settings.py:</p>
 <span class="n">MPTT_ADMIN_LEVEL_INDENT</span> <span class="o">=</span> <span class="mi">20</span>
 </pre></div>
 </div>
-<p>If you&#8217;d like to specify the pixel amount per Model, define an <tt class="docutils literal"><span class="pre">mptt_level_indent</span></tt>
+<p>If you&#8217;d like to specify the pixel amount per Model, define an <code class="docutils literal"><span class="pre">mptt_level_indent</span></code>
 attribute in your MPTTModelAdmin:</p>
-<div class="highlight-python"><pre>from django.contrib import admin
+<div class="highlight-python"><div class="highlight"><pre>from django.contrib import admin
 from mptt.admin import MPTTModelAdmin
 from myproject.myapp.models import Node
 
@@ -81,14 +82,16 @@ class CustomMPTTModelAdmin(MPTTModelAdmin)
     # speficfy pixel amount for this ModelAdmin only:
     mptt_level_indent = 20
 
-admin.site.register(Node, CustomMPTTModelAdmin)</pre>
+admin.site.register(Node, CustomMPTTModelAdmin)
+</pre></div>
 </div>
-<p>If you&#8217;d like to specify which field should be indented, add an <tt class="docutils literal"><span class="pre">mptt_indent_field</span></tt>
+<p>If you&#8217;d like to specify which field should be indented, add an <code class="docutils literal"><span class="pre">mptt_indent_field</span></code>
 to your MPTTModelAdmin:</p>
-<div class="highlight-python"><pre># …
+<div class="highlight-python"><div class="highlight"><pre># …
 class CustomMPTTModelAdmin(MPTTModelAdmin)
-    mptt_indent_field = "some_node_field"
-# …</pre>
+    mptt_indent_field = &quot;some_node_field&quot;
+# …
+</pre></div>
 </div>
 </div>
 </div>
@@ -97,12 +100,12 @@ class CustomMPTTModelAdmin(MPTTModelAdmin)
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Admin classes</a><ul>
-<li><a class="reference internal" href="#mptt-admin-mpttmodeladmin"><tt class="docutils literal"><span class="pre">mptt.admin.MPTTModelAdmin</span></tt></a></li>
+<li><a class="reference internal" href="#mptt-admin-mpttmodeladmin"><code class="docutils literal"><span class="pre">mptt.admin.MPTTModelAdmin</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -113,15 +116,17 @@ class CustomMPTTModelAdmin(MPTTModelAdmin)
   <h4>Next topic</h4>
   <p class="topless"><a href="forms.html"
                         title="next chapter">Working with trees in Django forms</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="sources/admin.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="sources/admin.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -135,7 +140,7 @@ class CustomMPTTModelAdmin(MPTTModelAdmin)
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -150,12 +155,12 @@ class CustomMPTTModelAdmin(MPTTModelAdmin)
         <li class="right" >
           <a href="models.html" title="Models and Managers"
              >previous</a> |</li>
-        <li><a href="index.html">django-mptt v0.6.1 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.7.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2007 - 2013, Craig de Stigter, Jonathan Buchanan and others.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>

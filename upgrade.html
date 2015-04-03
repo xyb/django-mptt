@@ -1,19 +1,20 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Upgrade notes &mdash; django-mptt v0.6.1 documentation</title>
-    <link rel="stylesheet" href="static/default.css" type="text/css" />
+    <title>Upgrade notes &mdash; django-mptt 0.7.0 documentation</title>
+    
+    <link rel="stylesheet" href="static/classic.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
-        VERSION:     '0.6.1',
+        URL_ROOT:    './',
+        VERSION:     '0.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,12 +23,12 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="django-mptt v0.6.1 documentation" href="index.html" />
+    <link rel="top" title="django-mptt 0.7.0 documentation" href="index.html" />
     <link rel="next" title="Technical details" href="technical_details.html" />
     <link rel="prev" title="Utilities for working with trees" href="utilities.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -42,19 +43,44 @@
         <li class="right" >
           <a href="utilities.html" title="Utilities for working with trees"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">django-mptt v0.6.1 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.7.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="upgrade-notes">
 <h1>Upgrade notes<a class="headerlink" href="#upgrade-notes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>0.6.0<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>0.7.0<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dropped-support-for-django-1-5-added-support-for-1-8">
+<h3>Dropped support for Django 1.5, Added support for 1.8<a class="headerlink" href="#dropped-support-for-django-1-5-added-support-for-1-8" title="Permalink to this headline">¶</a></h3>
+<p>Django 1.5 support has been removed since django 1.5 is not supported upstream any longer.</p>
+<p>Django 1.8 support has been added.</p>
+</div>
+<div class="section" id="deprecated-calling-recursetree-cache-tree-children-with-incorrectly-ordered-querysets">
+<h3>Deprecated: Calling <code class="docutils literal"><span class="pre">recursetree</span></code>/<code class="docutils literal"><span class="pre">cache_tree_children</span></code> with incorrectly-ordered querysets<a class="headerlink" href="#deprecated-calling-recursetree-cache-tree-children-with-incorrectly-ordered-querysets" title="Permalink to this headline">¶</a></h3>
+<p>Previously, when given a queryset argument, <code class="docutils literal"><span class="pre">cache_tree_children</span></code> called <code class="docutils literal"><span class="pre">.order_by</span></code> to ensure that the queryset
+was in the correct order. In 0.7, calling <code class="docutils literal"><span class="pre">cache_tree_children</span></code> with an incorrectly-ordered queryset will cause a deprecation warning. In 0.8, it will raise an error.</p>
+<p>This also applies to <code class="docutils literal"><span class="pre">recursetree</span></code>, since it calls <code class="docutils literal"><span class="pre">cache_tree_children</span></code>.</p>
+<p>This probably doesn&#8217;t affect many usages, since the default ordering for mptt models will work fine.</p>
+</div>
+<div class="section" id="minor-treemanager-get-queryset-no-longer-provided-on-django-1-6">
+<h3>Minor: <code class="docutils literal"><span class="pre">TreeManager.get_queryset</span></code> no longer provided on Django &lt; 1.6<a class="headerlink" href="#minor-treemanager-get-queryset-no-longer-provided-on-django-1-6" title="Permalink to this headline">¶</a></h3>
+<p>Django renamed <code class="docutils literal"><span class="pre">get_query_set</span></code> to <code class="docutils literal"><span class="pre">get_queryset</span></code> in Django 1.6. For backward compatibility django-mptt had both methods
+available for 1.4-1.5 users.</p>
+<p>This has been removed. You should use <code class="docutils literal"><span class="pre">get_query_set</span></code> on Django 1.4-1.5, and <code class="docutils literal"><span class="pre">get_queryset</span></code> if you&#8217;re on 1.6+.</p>
+</div>
+<div class="section" id="removed-feincmsmodeladmin">
+<h3>Removed FeinCMSModelAdmin<a class="headerlink" href="#removed-feincmsmodeladmin" title="Permalink to this headline">¶</a></h3>
+<p>Deprecated in 0.6.0, this has now been removed.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>0.6.0<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="mptt-now-requires-python-2-6-and-supports-python-3-2">
 <h3>mptt now requires Python 2.6+, and supports Python 3.2+<a class="headerlink" href="#mptt-now-requires-python-2-6-and-supports-python-3-2" title="Permalink to this headline">¶</a></h3>
 <p>mptt 0.6 drops support for both Python 2.4 and 2.5.</p>
@@ -62,40 +88,40 @@
 <p>If you absolutely can&#8217;t upgrade your Python version, you&#8217;ll need to stick to mptt 0.5.5 until you can.</p>
 </div>
 <div class="section" id="no-more-implicit-empty-label-true-on-form-fields">
-<h3>No more implicit <tt class="docutils literal"><span class="pre">empty_label=True</span></tt> on form fields<a class="headerlink" href="#no-more-implicit-empty-label-true-on-form-fields" title="Permalink to this headline">¶</a></h3>
-<p>Until 0.5, <tt class="docutils literal"><span class="pre">TreeNodeChoiceField</span></tt> and <tt class="docutils literal"><span class="pre">TreeNodeMultipleChoiceField</span></tt> implicitly set <tt class="docutils literal"><span class="pre">empty_label=True</span></tt>.
+<h3>No more implicit <code class="docutils literal"><span class="pre">empty_label=True</span></code> on form fields<a class="headerlink" href="#no-more-implicit-empty-label-true-on-form-fields" title="Permalink to this headline">¶</a></h3>
+<p>Until 0.5, <code class="docutils literal"><span class="pre">TreeNodeChoiceField</span></code> and <code class="docutils literal"><span class="pre">TreeNodeMultipleChoiceField</span></code> implicitly set <code class="docutils literal"><span class="pre">empty_label=True</span></code>.
 This was around since a long time ago, for unknown reasons. It has been removed in 0.6.0 as it caused occasional headaches for users.</p>
-<p>If you were relying on this behavior, you&#8217;ll need to explicitly pass <tt class="docutils literal"><span class="pre">empty_label=True</span></tt> to any of those fields you use,
+<p>If you were relying on this behavior, you&#8217;ll need to explicitly pass <code class="docutils literal"><span class="pre">empty_label=True</span></code> to any of those fields you use,
 otherwise you will start seeing new &#8216;&#8212;&#8212;&#8211;&#8217; choices appearing in them.</p>
 </div>
 <div class="section" id="deprecated-feincmsmodeladmin">
 <h3>Deprecated FeinCMSModelAdmin<a class="headerlink" href="#deprecated-feincmsmodeladmin" title="Permalink to this headline">¶</a></h3>
-<p>If you were using <tt class="docutils literal"><span class="pre">mptt.admin.FeinCMSModelAdmin</span></tt>, you should switch to using
-<tt class="docutils literal"><span class="pre">feincms.admin.tree_editor.TreeEditor</span></tt> instead, or you&#8217;ll get a loud deprecation warning.</p>
+<p>If you were using <code class="docutils literal"><span class="pre">mptt.admin.FeinCMSModelAdmin</span></code>, you should switch to using
+<code class="docutils literal"><span class="pre">feincms.admin.tree_editor.TreeEditor</span></code> instead, or you&#8217;ll get a loud deprecation warning.</p>
 </div>
 </div>
 <div class="section" id="to-0-5-5">
 <h2>0.4.2 to 0.5.5<a class="headerlink" href="#to-0-5-5" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="treemanager-is-now-the-default-manager-yourmodel-tree-removed">
-<h3><tt class="docutils literal"><span class="pre">TreeManager</span></tt> is now the default manager, <tt class="docutils literal"><span class="pre">YourModel.tree</span></tt> removed<a class="headerlink" href="#treemanager-is-now-the-default-manager-yourmodel-tree-removed" title="Permalink to this headline">¶</a></h3>
-<p>In 0.5, <tt class="docutils literal"><span class="pre">TreeManager</span></tt> now behaves just like a normal django manager. If you don&#8217;t override anything,
-you&#8217;ll now get a <tt class="docutils literal"><span class="pre">TreeManager</span></tt> by default (<tt class="docutils literal"><span class="pre">.objects</span></tt>.)</p>
-<p>Before 0.5, <tt class="docutils literal"><span class="pre">.tree</span></tt> was the default name for the <tt class="docutils literal"><span class="pre">TreeManager</span></tt>. That&#8217;s been removed, so we recommend
-updating your code to use <tt class="docutils literal"><span class="pre">.objects</span></tt>.</p>
-<p>If you don&#8217;t want to update <tt class="docutils literal"><span class="pre">.tree</span></tt> to <tt class="docutils literal"><span class="pre">.objects</span></tt> everywhere just yet, you should add an explicit <tt class="docutils literal"><span class="pre">TreeManager</span></tt>
+<h3><code class="docutils literal"><span class="pre">TreeManager</span></code> is now the default manager, <code class="docutils literal"><span class="pre">YourModel.tree</span></code> removed<a class="headerlink" href="#treemanager-is-now-the-default-manager-yourmodel-tree-removed" title="Permalink to this headline">¶</a></h3>
+<p>In 0.5, <code class="docutils literal"><span class="pre">TreeManager</span></code> now behaves just like a normal django manager. If you don&#8217;t override anything,
+you&#8217;ll now get a <code class="docutils literal"><span class="pre">TreeManager</span></code> by default (<code class="docutils literal"><span class="pre">.objects</span></code>.)</p>
+<p>Before 0.5, <code class="docutils literal"><span class="pre">.tree</span></code> was the default name for the <code class="docutils literal"><span class="pre">TreeManager</span></code>. That&#8217;s been removed, so we recommend
+updating your code to use <code class="docutils literal"><span class="pre">.objects</span></code>.</p>
+<p>If you don&#8217;t want to update <code class="docutils literal"><span class="pre">.tree</span></code> to <code class="docutils literal"><span class="pre">.objects</span></code> everywhere just yet, you should add an explicit <code class="docutils literal"><span class="pre">TreeManager</span></code>
 to your models:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">objects</span> <span class="o">=</span> <span class="n">tree</span> <span class="o">=</span> <span class="n">TreeManager</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="save-raw-true-keyword-argument-removed">
-<h3><tt class="docutils literal"><span class="pre">save(raw=True)</span></tt> keyword argument removed<a class="headerlink" href="#save-raw-true-keyword-argument-removed" title="Permalink to this headline">¶</a></h3>
-<p>In earlier versions, MPTTModel.save() had a <tt class="docutils literal"><span class="pre">raw</span></tt> keyword argument.
+<h3><code class="docutils literal"><span class="pre">save(raw=True)</span></code> keyword argument removed<a class="headerlink" href="#save-raw-true-keyword-argument-removed" title="Permalink to this headline">¶</a></h3>
+<p>In earlier versions, MPTTModel.save() had a <code class="docutils literal"><span class="pre">raw</span></code> keyword argument.
 If True, the MPTT fields would not be updated during the save.
 This (undocumented) argument has now been removed.</p>
 </div>
 <div class="section" id="meta-attributes-moved-to-mptt-meta">
-<h3><tt class="docutils literal"><span class="pre">_meta</span></tt> attributes moved to <tt class="docutils literal"><span class="pre">_mptt_meta</span></tt><a class="headerlink" href="#meta-attributes-moved-to-mptt-meta" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal"><span class="pre">_meta</span></code> attributes moved to <code class="docutils literal"><span class="pre">_mptt_meta</span></code><a class="headerlink" href="#meta-attributes-moved-to-mptt-meta" title="Permalink to this headline">¶</a></h3>
 <p>In 0.4, we deprecated all these attributes on model._meta. These have now been removed:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">left_attr</span>
 <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">right_attr</span>
@@ -106,15 +132,16 @@ This (undocumented) argument has now been removed.</p>
 <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">order_insertion_by</span>
 </pre></div>
 </div>
-<p>If you&#8217;re still using any of these, you&#8217;ll need to update by simply renaming <tt class="docutils literal"><span class="pre">_meta</span></tt> to <tt class="docutils literal"><span class="pre">_mptt_meta</span></tt>.</p>
+<p>If you&#8217;re still using any of these, you&#8217;ll need to update by simply renaming <code class="docutils literal"><span class="pre">_meta</span></code> to <code class="docutils literal"><span class="pre">_mptt_meta</span></code>.</p>
 </div>
 <div class="section" id="running-the-tests">
 <h3>Running the tests<a class="headerlink" href="#running-the-tests" title="Permalink to this headline">¶</a></h3>
 <p>Tests are now run with:</p>
-<div class="highlight-python"><pre>cd tests/
-./runtests.sh</pre>
+<div class="highlight-python"><div class="highlight"><pre>cd tests/
+./runtests.sh
+</pre></div>
 </div>
-<p>The previous method (<tt class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">test</span></tt>) no longer works since we switched to plain distutils.</p>
+<p>The previous method (<code class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">test</span></code>) no longer works since we switched to plain distutils.</p>
 </div>
 </div>
 <div class="section" id="to-0-4-2">
@@ -122,7 +149,7 @@ This (undocumented) argument has now been removed.</p>
 <div class="section" id="model-changes">
 <h3>Model changes<a class="headerlink" href="#model-changes" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="mptt-attributes-on-mymodel-meta-deprecated-moved-to-mymodel-mptt-meta">
-<h4>MPTT attributes on <tt class="docutils literal"><span class="pre">MyModel._meta</span></tt> deprecated, moved to <tt class="docutils literal"><span class="pre">MyModel._mptt_meta</span></tt><a class="headerlink" href="#mptt-attributes-on-mymodel-meta-deprecated-moved-to-mymodel-mptt-meta" title="Permalink to this headline">¶</a></h4>
+<h4>MPTT attributes on <code class="docutils literal"><span class="pre">MyModel._meta</span></code> deprecated, moved to <code class="docutils literal"><span class="pre">MyModel._mptt_meta</span></code><a class="headerlink" href="#mptt-attributes-on-mymodel-meta-deprecated-moved-to-mymodel-mptt-meta" title="Permalink to this headline">¶</a></h4>
 <p>Most people won&#8217;t need to worry about this, but if you&#8217;re using any of the following, note that these are deprecated and will be removed in 0.5:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">left_attr</span>
 <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">right_attr</span>
@@ -133,11 +160,11 @@ This (undocumented) argument has now been removed.</p>
 <span class="n">MyModel</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">order_insertion_by</span>
 </pre></div>
 </div>
-<p>They&#8217;ll continue to work as previously for now, but you should upgrade your code if you can. Simply replace <tt class="docutils literal"><span class="pre">_meta</span></tt> with <tt class="docutils literal"><span class="pre">_mptt_meta</span></tt>.</p>
+<p>They&#8217;ll continue to work as previously for now, but you should upgrade your code if you can. Simply replace <code class="docutils literal"><span class="pre">_meta</span></code> with <code class="docutils literal"><span class="pre">_mptt_meta</span></code>.</p>
 </div>
 <div class="section" id="use-model-inheritance-where-possible">
 <h4>Use model inheritance where possible<a class="headerlink" href="#use-model-inheritance-where-possible" title="Permalink to this headline">¶</a></h4>
-<p>The preferred way to do model registration in <tt class="docutils literal"><span class="pre">django-mptt</span></tt> 0.4 is via model inheritance.</p>
+<p>The preferred way to do model registration in <code class="docutils literal"><span class="pre">django-mptt</span></code> 0.4 is via model inheritance.</p>
 <p>Suppose you start with this:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Node</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="o">...</span>
@@ -145,14 +172,14 @@ This (undocumented) argument has now been removed.</p>
 <span class="n">mptt</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">Node</span><span class="p">,</span> <span class="n">order_insertion_by</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">parent_attr</span><span class="o">=</span><span class="s">&#39;padre&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>First, Make your model a subclass of <tt class="docutils literal"><span class="pre">MPTTModel</span></tt>, instead of <tt class="docutils literal"><span class="pre">models.Model</span></tt>:</p>
+<p>First, Make your model a subclass of <code class="docutils literal"><span class="pre">MPTTModel</span></code>, instead of <code class="docutils literal"><span class="pre">models.Model</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mptt.models</span> <span class="kn">import</span> <span class="n">MPTTModel</span>
 
 <span class="k">class</span> <span class="nc">Node</span><span class="p">(</span><span class="n">MPTTModel</span><span class="p">):</span>
     <span class="o">...</span>
 </pre></div>
 </div>
-<p>Then remove your call to <tt class="docutils literal"><span class="pre">mptt.register()</span></tt>. If you were passing it keyword arguments, you should add them to an <tt class="docutils literal"><span class="pre">MPTTMeta</span></tt> inner class on the model:</p>
+<p>Then remove your call to <code class="docutils literal"><span class="pre">mptt.register()</span></code>. If you were passing it keyword arguments, you should add them to an <code class="docutils literal"><span class="pre">MPTTMeta</span></code> inner class on the model:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Node</span><span class="p">(</span><span class="n">MPTTModel</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">class</span> <span class="nc">MPTTMeta</span><span class="p">:</span>
@@ -160,11 +187,11 @@ This (undocumented) argument has now been removed.</p>
         <span class="n">parent_attr</span> <span class="o">=</span> <span class="s">&#39;padre&#39;</span>
 </pre></div>
 </div>
-<p>If necessary you can still use <tt class="docutils literal"><span class="pre">mptt.register</span></tt>. It was removed in 0.4.0 but restored in 0.4.2, since people reported use cases that didn&#8217;t work without it.)</p>
-<p>For instance, if you need to register models where the code isn&#8217;t under your control, you&#8217;ll need to use <tt class="docutils literal"><span class="pre">mptt.register()</span></tt>.</p>
-<p>Behind the scenes, <tt class="docutils literal"><span class="pre">mptt.register()</span></tt> in 0.4 will actually add MPTTModel to <tt class="docutils literal"><span class="pre">Node.__bases__</span></tt>,
-thus achieving the same result as subclassing <tt class="docutils literal"><span class="pre">MPTTModel</span></tt>.
-If you&#8217;re already inheriting from something other than <tt class="docutils literal"><span class="pre">Model</span></tt>, that means multiple inheritance.</p>
+<p>If necessary you can still use <code class="docutils literal"><span class="pre">mptt.register</span></code>. It was removed in 0.4.0 but restored in 0.4.2, since people reported use cases that didn&#8217;t work without it.)</p>
+<p>For instance, if you need to register models where the code isn&#8217;t under your control, you&#8217;ll need to use <code class="docutils literal"><span class="pre">mptt.register()</span></code>.</p>
+<p>Behind the scenes, <code class="docutils literal"><span class="pre">mptt.register()</span></code> in 0.4 will actually add MPTTModel to <code class="docutils literal"><span class="pre">Node.__bases__</span></code>,
+thus achieving the same result as subclassing <code class="docutils literal"><span class="pre">MPTTModel</span></code>.
+If you&#8217;re already inheriting from something other than <code class="docutils literal"><span class="pre">Model</span></code>, that means multiple inheritance.</p>
 <p>You&#8217;re probably all upgraded at this point :) A couple more notes for more complex scenarios:</p>
 </div>
 </div>
@@ -191,8 +218,8 @@ breaking this approach for you, please <a class="reference external" href="http:
 </div>
 <div class="section" id="compatibility-with-0-3">
 <h4>Compatibility with 0.3<a class="headerlink" href="#compatibility-with-0-3" title="Permalink to this headline">¶</a></h4>
-<p><tt class="docutils literal"><span class="pre">MPTTModel</span></tt> was added in 0.4. If you&#8217;re writing a library or reusable app that needs to work with 0.3,
-you should use the <tt class="docutils literal"><span class="pre">mptt.register()</span></tt> function instead, as above.</p>
+<p><code class="docutils literal"><span class="pre">MPTTModel</span></code> was added in 0.4. If you&#8217;re writing a library or reusable app that needs to work with 0.3,
+you should use the <code class="docutils literal"><span class="pre">mptt.register()</span></code> function instead, as above.</p>
 </div>
 </div>
 </div>
@@ -202,27 +229,34 @@ you should use the <tt class="docutils literal"><span class="pre">mptt.register(
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Upgrade notes</a><ul>
-<li><a class="reference internal" href="#id1">0.6.0</a><ul>
+<li><a class="reference internal" href="#id1">0.7.0</a><ul>
+<li><a class="reference internal" href="#dropped-support-for-django-1-5-added-support-for-1-8">Dropped support for Django 1.5, Added support for 1.8</a></li>
+<li><a class="reference internal" href="#deprecated-calling-recursetree-cache-tree-children-with-incorrectly-ordered-querysets">Deprecated: Calling <code class="docutils literal"><span class="pre">recursetree</span></code>/<code class="docutils literal"><span class="pre">cache_tree_children</span></code> with incorrectly-ordered querysets</a></li>
+<li><a class="reference internal" href="#minor-treemanager-get-queryset-no-longer-provided-on-django-1-6">Minor: <code class="docutils literal"><span class="pre">TreeManager.get_queryset</span></code> no longer provided on Django &lt; 1.6</a></li>
+<li><a class="reference internal" href="#removed-feincmsmodeladmin">Removed FeinCMSModelAdmin</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">0.6.0</a><ul>
 <li><a class="reference internal" href="#mptt-now-requires-python-2-6-and-supports-python-3-2">mptt now requires Python 2.6+, and supports Python 3.2+</a></li>
-<li><a class="reference internal" href="#no-more-implicit-empty-label-true-on-form-fields">No more implicit <tt class="docutils literal"><span class="pre">empty_label=True</span></tt> on form fields</a></li>
+<li><a class="reference internal" href="#no-more-implicit-empty-label-true-on-form-fields">No more implicit <code class="docutils literal"><span class="pre">empty_label=True</span></code> on form fields</a></li>
 <li><a class="reference internal" href="#deprecated-feincmsmodeladmin">Deprecated FeinCMSModelAdmin</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#to-0-5-5">0.4.2 to 0.5.5</a><ul>
-<li><a class="reference internal" href="#treemanager-is-now-the-default-manager-yourmodel-tree-removed"><tt class="docutils literal"><span class="pre">TreeManager</span></tt> is now the default manager, <tt class="docutils literal"><span class="pre">YourModel.tree</span></tt> removed</a></li>
-<li><a class="reference internal" href="#save-raw-true-keyword-argument-removed"><tt class="docutils literal"><span class="pre">save(raw=True)</span></tt> keyword argument removed</a></li>
-<li><a class="reference internal" href="#meta-attributes-moved-to-mptt-meta"><tt class="docutils literal"><span class="pre">_meta</span></tt> attributes moved to <tt class="docutils literal"><span class="pre">_mptt_meta</span></tt></a></li>
+<li><a class="reference internal" href="#treemanager-is-now-the-default-manager-yourmodel-tree-removed"><code class="docutils literal"><span class="pre">TreeManager</span></code> is now the default manager, <code class="docutils literal"><span class="pre">YourModel.tree</span></code> removed</a></li>
+<li><a class="reference internal" href="#save-raw-true-keyword-argument-removed"><code class="docutils literal"><span class="pre">save(raw=True)</span></code> keyword argument removed</a></li>
+<li><a class="reference internal" href="#meta-attributes-moved-to-mptt-meta"><code class="docutils literal"><span class="pre">_meta</span></code> attributes moved to <code class="docutils literal"><span class="pre">_mptt_meta</span></code></a></li>
 <li><a class="reference internal" href="#running-the-tests">Running the tests</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#to-0-4-2">0.3 to 0.4.2</a><ul>
 <li><a class="reference internal" href="#model-changes">Model changes</a><ul>
-<li><a class="reference internal" href="#mptt-attributes-on-mymodel-meta-deprecated-moved-to-mymodel-mptt-meta">MPTT attributes on <tt class="docutils literal"><span class="pre">MyModel._meta</span></tt> deprecated, moved to <tt class="docutils literal"><span class="pre">MyModel._mptt_meta</span></tt></a></li>
+<li><a class="reference internal" href="#mptt-attributes-on-mymodel-meta-deprecated-moved-to-mymodel-mptt-meta">MPTT attributes on <code class="docutils literal"><span class="pre">MyModel._meta</span></code> deprecated, moved to <code class="docutils literal"><span class="pre">MyModel._mptt_meta</span></code></a></li>
 <li><a class="reference internal" href="#use-model-inheritance-where-possible">Use model inheritance where possible</a></li>
 </ul>
 </li>
@@ -243,15 +277,17 @@ you should use the <tt class="docutils literal"><span class="pre">mptt.register(
   <h4>Next topic</h4>
   <p class="topless"><a href="technical_details.html"
                         title="next chapter">Technical details</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="sources/upgrade.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="sources/upgrade.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -265,7 +301,7 @@ you should use the <tt class="docutils literal"><span class="pre">mptt.register(
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -280,12 +316,12 @@ you should use the <tt class="docutils literal"><span class="pre">mptt.register(
         <li class="right" >
           <a href="utilities.html" title="Utilities for working with trees"
              >previous</a> |</li>
-        <li><a href="index.html">django-mptt v0.6.1 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.7.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2007 - 2013, Craig de Stigter, Jonathan Buchanan and others.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
     </div>
   </body>
 </html>
