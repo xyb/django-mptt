@@ -2,6 +2,18 @@
 Upgrade notes
 =============
 
+0.8.0
+===================
+
+Dropped support for old Django versions and Python 2.6
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Unsupported versions of django (1.4, 1.5, 1.6, 1.7) are no longer supported, and Python 2.6 is no longer supported.
+
+These versions of python/django no longer receive security patches. You should upgrade to Python 2.7 and Django 1.8+.
+
+Django 1.9 support has been added.
+
 0.7.0
 =====
 

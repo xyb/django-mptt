@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Utilities for working with trees &mdash; django-mptt 0.7.0 documentation</title>
+    <title>Utilities for working with trees &mdash; django-mptt 0.8.0 documentation</title>
     
     <link rel="stylesheet" href="static/classic.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.7.0',
+        VERSION:     '0.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="django-mptt 0.7.0 documentation" href="index.html" />
+    <link rel="top" title="django-mptt 0.8.0 documentation" href="index.html" />
     <link rel="next" title="Upgrade notes" href="upgrade.html" />
     <link rel="prev" title="Working with trees in templates" href="templates.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="templates.html" title="Working with trees in templates"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.7.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.8.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -53,15 +53,16 @@
           <div class="body" role="main">
             
   <div class="section" id="utilities-for-working-with-trees">
-<h1><a class="toc-backref" href="#id4">Utilities for working with trees</a><a class="headerlink" href="#utilities-for-working-with-trees" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id5">Utilities for working with trees</a><a class="headerlink" href="#utilities-for-working-with-trees" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#utilities-for-working-with-trees" id="id4">Utilities for working with trees</a><ul>
-<li><a class="reference internal" href="#list-tree-utilities" id="id5">List/tree utilities</a><ul>
-<li><a class="reference internal" href="#previous-current-next" id="id6"><code class="docutils literal"><span class="pre">previous_current_next()</span></code></a></li>
-<li><a class="reference internal" href="#tree-item-iterator" id="id7"><code class="docutils literal"><span class="pre">tree_item_iterator()</span></code></a></li>
-<li><a class="reference internal" href="#drilldown-tree-for-node" id="id8"><code class="docutils literal"><span class="pre">drilldown_tree_for_node()</span></code></a></li>
+<li><a class="reference internal" href="#utilities-for-working-with-trees" id="id5">Utilities for working with trees</a><ul>
+<li><a class="reference internal" href="#list-tree-utilities" id="id6">List/tree utilities</a><ul>
+<li><a class="reference internal" href="#previous-current-next" id="id7"><code class="docutils literal"><span class="pre">previous_current_next()</span></code></a></li>
+<li><a class="reference internal" href="#tree-item-iterator" id="id8"><code class="docutils literal"><span class="pre">tree_item_iterator()</span></code></a></li>
+<li><a class="reference internal" href="#drilldown-tree-for-node" id="id9"><code class="docutils literal"><span class="pre">drilldown_tree_for_node()</span></code></a></li>
+<li><a class="reference internal" href="#get-cached-trees" id="id10"><code class="docutils literal"><span class="pre">get_cached_trees()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -69,11 +70,11 @@
 </ul>
 </div>
 <div class="section" id="list-tree-utilities">
-<h2><a class="toc-backref" href="#id5">List/tree utilities</a><a class="headerlink" href="#list-tree-utilities" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">List/tree utilities</a><a class="headerlink" href="#list-tree-utilities" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal"><span class="pre">mptt.utils</span></code> module contains the following functions for working
 with and creating lists of model instances which represent trees.</p>
 <div class="section" id="previous-current-next">
-<h3><a class="toc-backref" href="#id6"><code class="docutils literal"><span class="pre">previous_current_next()</span></code></a><a class="headerlink" href="#previous-current-next" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7"><code class="docutils literal"><span class="pre">previous_current_next()</span></code></a><a class="headerlink" href="#previous-current-next" title="Permalink to this headline">¶</a></h3>
 <p>From <a class="reference external" href="http://www.wordaligned.org/articles/zippy-triples-served-with-python">http://www.wordaligned.org/articles/zippy-triples-served-with-python</a></p>
 <p>Creates an iterator which returns (previous, current, next) triples,
 with <code class="docutils literal"><span class="pre">None</span></code> filling in when there is no previous or next available.</p>
@@ -89,7 +90,7 @@ is used in the implementation of <a class="reference internal" href="#tree-item-
 </div>
 </div>
 <div class="section" id="tree-item-iterator">
-<h3><a class="toc-backref" href="#id7"><code class="docutils literal"><span class="pre">tree_item_iterator()</span></code></a><a class="headerlink" href="#tree-item-iterator" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8"><code class="docutils literal"><span class="pre">tree_item_iterator()</span></code></a><a class="headerlink" href="#tree-item-iterator" title="Permalink to this headline">¶</a></h3>
 <p>This function is used to implement the <code class="docutils literal"><span class="pre">tree_info</span></code> template filter,
 yielding two-tuples of (tree item, tree structure information <code class="docutils literal"><span class="pre">dict</span></code>).</p>
 <p>See the <code class="docutils literal"><span class="pre">tree_info</span></code> documentation for more information.</p>
@@ -112,7 +113,7 @@ information <code class="docutils literal"><span class="pre">dict`</span> <span 
 </div>
 </div>
 <div class="section" id="drilldown-tree-for-node">
-<h3><a class="toc-backref" href="#id8"><code class="docutils literal"><span class="pre">drilldown_tree_for_node()</span></code></a><a class="headerlink" href="#drilldown-tree-for-node" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9"><code class="docutils literal"><span class="pre">drilldown_tree_for_node()</span></code></a><a class="headerlink" href="#drilldown-tree-for-node" title="Permalink to this headline">¶</a></h3>
 <p>This function is used in the implementation of the
 <code class="docutils literal"><span class="pre">drilldown_tree_for_node</span></code> template tag.</p>
 <p>It creates an iterable which yields model instances representing a
@@ -147,6 +148,30 @@ node <em>and</em> all of its descendants. Defaults to <code class="docutils lite
 </dl>
 </div>
 </div>
+<div class="section" id="get-cached-trees">
+<h3><a class="toc-backref" href="#id10"><code class="docutils literal"><span class="pre">get_cached_trees()</span></code></a><a class="headerlink" href="#get-cached-trees" title="Permalink to this headline">¶</a></h3>
+<p>Takes a list/queryset of model objects in MPTT left (depth-first) order and
+caches the children and parent on each node. This allows up and down traversal
+through the tree without the need for further queries. Use cases include using
+a recursively included template or arbitrarily traversing trees.</p>
+<p>Returns a list of top-level nodes. If a single tree was provided in its
+entirety, the list will of course consist of just the tree&#8217;s root node.</p>
+<p>Aliases to this function are also available:</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">mptt.templatetags.mptt_tag.cache_tree_children</span></code></dt>
+<dd>Use for recursive rendering in templates.</dd>
+<dt><code class="docutils literal"><span class="pre">mptt.querysets.TreeQuerySet.get_cached_trees</span></code></dt>
+<dd>Useful for chaining with queries; e.g.,
+<cite>Node.objects.filter(**kwargs).get_cached_trees()</cite></dd>
+</dl>
+<div class="section" id="id4">
+<h4>Required arguments<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">queryset</span></code></dt>
+<dd>An iterable that consists of all nodes which are to be cached.</dd>
+</dl>
+</div>
+</div>
 </div>
 </div>
 
@@ -172,6 +197,10 @@ node <em>and</em> all of its descendants. Defaults to <code class="docutils lite
 <li><a class="reference internal" href="#drilldown-tree-for-node"><code class="docutils literal"><span class="pre">drilldown_tree_for_node()</span></code></a><ul>
 <li><a class="reference internal" href="#id2">Required arguments</a></li>
 <li><a class="reference internal" href="#id3">Optional arguments</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#get-cached-trees"><code class="docutils literal"><span class="pre">get_cached_trees()</span></code></a><ul>
+<li><a class="reference internal" href="#id4">Required arguments</a></li>
 </ul>
 </li>
 </ul>
@@ -225,12 +254,12 @@ node <em>and</em> all of its descendants. Defaults to <code class="docutils lite
         <li class="right" >
           <a href="templates.html" title="Working with trees in templates"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.7.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.8.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &copy; Copyright 2007 - 2013, Craig de Stigter, Jonathan Buchanan and others.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
     </div>
   </body>
 </html>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Upgrade notes &mdash; django-mptt 0.7.0 documentation</title>
+    <title>Upgrade notes &mdash; django-mptt 0.8.0 documentation</title>
     
     <link rel="stylesheet" href="static/classic.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.7.0',
+        VERSION:     '0.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="django-mptt 0.7.0 documentation" href="index.html" />
+    <link rel="top" title="django-mptt 0.8.0 documentation" href="index.html" />
     <link rel="next" title="Technical details" href="technical_details.html" />
     <link rel="prev" title="Utilities for working with trees" href="utilities.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="utilities.html" title="Utilities for working with trees"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.7.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.8.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -55,7 +55,16 @@
   <div class="section" id="upgrade-notes">
 <h1>Upgrade notes<a class="headerlink" href="#upgrade-notes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>0.7.0<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>0.8.0<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dropped-support-for-old-django-versions-and-python-2-6">
+<h3>Dropped support for old Django versions and Python 2.6<a class="headerlink" href="#dropped-support-for-old-django-versions-and-python-2-6" title="Permalink to this headline">¶</a></h3>
+<p>Unsupported versions of django (1.4, 1.5, 1.6, 1.7) are no longer supported, and Python 2.6 is no longer supported.</p>
+<p>These versions of python/django no longer receive security patches. You should upgrade to Python 2.7 and Django 1.8+.</p>
+<p>Django 1.9 support has been added.</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>0.7.0<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="dropped-support-for-django-1-5-added-support-for-1-8">
 <h3>Dropped support for Django 1.5, Added support for 1.8<a class="headerlink" href="#dropped-support-for-django-1-5-added-support-for-1-8" title="Permalink to this headline">¶</a></h3>
 <p>Django 1.5 support has been removed since django 1.5 is not supported upstream any longer.</p>
@@ -79,8 +88,8 @@ available for 1.4-1.5 users.</p>
 <p>Deprecated in 0.6.0, this has now been removed.</p>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>0.6.0<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>0.6.0<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="mptt-now-requires-python-2-6-and-supports-python-3-2">
 <h3>mptt now requires Python 2.6+, and supports Python 3.2+<a class="headerlink" href="#mptt-now-requires-python-2-6-and-supports-python-3-2" title="Permalink to this headline">¶</a></h3>
 <p>mptt 0.6 drops support for both Python 2.4 and 2.5.</p>
@@ -234,14 +243,18 @@ you should use the <code class="docutils literal"><span class="pre">mptt.registe
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Upgrade notes</a><ul>
-<li><a class="reference internal" href="#id1">0.7.0</a><ul>
+<li><a class="reference internal" href="#id1">0.8.0</a><ul>
+<li><a class="reference internal" href="#dropped-support-for-old-django-versions-and-python-2-6">Dropped support for old Django versions and Python 2.6</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">0.7.0</a><ul>
 <li><a class="reference internal" href="#dropped-support-for-django-1-5-added-support-for-1-8">Dropped support for Django 1.5, Added support for 1.8</a></li>
 <li><a class="reference internal" href="#deprecated-calling-recursetree-cache-tree-children-with-incorrectly-ordered-querysets">Deprecated: Calling <code class="docutils literal"><span class="pre">recursetree</span></code>/<code class="docutils literal"><span class="pre">cache_tree_children</span></code> with incorrectly-ordered querysets</a></li>
 <li><a class="reference internal" href="#minor-treemanager-get-queryset-no-longer-provided-on-django-1-6">Minor: <code class="docutils literal"><span class="pre">TreeManager.get_queryset</span></code> no longer provided on Django &lt; 1.6</a></li>
 <li><a class="reference internal" href="#removed-feincmsmodeladmin">Removed FeinCMSModelAdmin</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id2">0.6.0</a><ul>
+<li><a class="reference internal" href="#id3">0.6.0</a><ul>
 <li><a class="reference internal" href="#mptt-now-requires-python-2-6-and-supports-python-3-2">mptt now requires Python 2.6+, and supports Python 3.2+</a></li>
 <li><a class="reference internal" href="#no-more-implicit-empty-label-true-on-form-fields">No more implicit <code class="docutils literal"><span class="pre">empty_label=True</span></code> on form fields</a></li>
 <li><a class="reference internal" href="#deprecated-feincmsmodeladmin">Deprecated FeinCMSModelAdmin</a></li>
@@ -316,12 +329,12 @@ you should use the <code class="docutils literal"><span class="pre">mptt.registe
         <li class="right" >
           <a href="utilities.html" title="Utilities for working with trees"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.7.0 documentation</a> &raquo;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">django-mptt 0.8.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &copy; Copyright 2007 - 2013, Craig de Stigter, Jonathan Buchanan and others.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
     </div>
   </body>
 </html>
