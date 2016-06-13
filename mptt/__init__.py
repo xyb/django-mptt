@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-VERSION = (0, 8, 4)
+VERSION = (0, 8, 4, 'patch468')
 __version__ = '.'.join(str(v) for v in VERSION)
 
 
